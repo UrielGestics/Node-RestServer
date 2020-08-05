@@ -21,7 +21,7 @@ app.use(require('./rutas/usuario'));
 conectar = async(err, res) => {
 
     await mongoose.connect(
-        "mongodb+srv://uriels96:Herramientas123@cluster0.rcgvt.mongodb.net/cafe", {
+        "Cadena de coneccion", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         }
