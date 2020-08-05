@@ -1,41 +1,36 @@
 const express = require('express')
+const mongoose = require("mongoose")
 const app = express()
-var bodyParser = require("body-parser")
+const bodyParser = require("body-parser")
 require('./config/config');
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(require('./rutas/usuario'));
 
-// parse application/json
-app.use(bodyParser.json())
 
-app.get('/usuario', function(req, res) {
-    res.json('get usuario')
-})
 
-app.post('/usuario', function(req, res) {
-    let body = req.body;
-    if (body.Nombre === undefined) {
+// conectar = async(err, res) => {
 
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesesario'
-        })
-    } else {
-        res.json({ body })
-    }
-})
+//     await mongoose.connect(
+//         "mongodb://localhost:27017/cafe", {
+//             useNewUrlParser: true,
+//             useUnifiedTopology: true,
+//         }
+//     );
 
-app.put('/usuario/:id', function(req, res) {
-    let id = req.params.id;
+// }
 
-    res.json({
-        id
-    })
-})
+conectar = async(err, res) => {
 
-app.delete('/usuario', function(req, res) {
-    res.json('delete usuario')
-})
+    await mongoose.connect(
+        "mongodb+srv://uriels96:Herramientas123@cluster0.rcgvt.mongodb.net/cafe", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }
+    );
+
+}
+
+
+
 
 
 app.listen(process.env.PORT, () =>
